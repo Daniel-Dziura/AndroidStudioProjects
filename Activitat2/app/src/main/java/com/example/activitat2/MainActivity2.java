@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -18,30 +19,40 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
 
-        //Recollir informacid del Intwnt i mostrar-la Bundle
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            //llegir el contingut de extras amb la mateixa etiqueta que hem emprat per a enviar
             textRebut = extras.getString("Etiqueta");
         }
 
-        //Recollir informaciO del lntwnt i mostrar-la
         //Bundle extras = getIntent().getExtras();
         if (extras != null) {
-        //fillegir el contingut de extras amb la mateixa etiqueta que hem emprat per a enviar
-            textRebut = extras.getString("Etiquetal");
-            //modificar el TextView i escriure-ho
-            TextView textElement = findViewById(R.id.textView);
+            textRebut = extras.getString("Etiqueta");
+            TextView textElement = findViewById(R.id.editTextTextPersonName);
             textElement.setText(textRebut);
     }
         //Log.e("tag", textRebut);
-
 }
 
-    public void obreActivitatMain(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+    @Override
+    public void finish(){
+        EditText text = findViewById(R.id.editTextTextPersonName);
+        String valor = text.getText().toString();
+        Intent data = new Intent();
+        data.putExtra("Retorn", valor);
 
-        startActivity(intent);
+        setResult(RESULT_OK, data);
+
+        super.finish();
+    }
+
+    public void obreActivitatMain(View view){
+        //Intent data = new Intent();
+        //data.putExtra("Retorn", 1);
+        //setResult(RESULT_OK, data);
+        finish();
+        //Intent intent = new Intent(this, MainActivity.class);
+
+        //startActivity(intent);
 
     }
 }
