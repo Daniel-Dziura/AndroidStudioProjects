@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Activitat_9</string>
     <string-array name="paisos_array">
+
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>
@@ -239,5 +240,7 @@
         <item>Yugoslavia</item>
         <item>Zambia</item>
         <item>Zimbabwe</item>
+
     </string-array>
+
 </resources>

@@ -14,11 +14,9 @@ import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
 
-    static final String[] PAISOS = new String[]{
-            "España", "Francia", "Portugal"
-    };
-
-
+    //static final String[] PAISOS = new String[]{
+    //       "España", "Francia", "Portugal"
+    //};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +32,25 @@ public class MainActivity extends ListActivity {
 
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
-
-
     }
 
     public void onListItemClick(ListView parent, View v, int position, long id){
         String pais = ((TextView) v).getText().toString();
         Toast.makeText(getApplicationContext(), pais, Toast.LENGTH_SHORT).show();
 
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://es.wikipedia.org/wiki/" + pais));
-        startActivity(i);
+        //Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://es.wikipedia.org/wiki/" + pais));
+        //startActivity(i);
+
+        maps(pais);
+    }
+
+    public void maps(String pais) {
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + pais);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
     }
 
 }
